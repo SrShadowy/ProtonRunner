@@ -87,14 +87,20 @@ qmake && make
   
 
 ```mermaid
-
-Usuário->>+Proton Runner: Seleciona jogo
-
-Usuário->>+Proton Runner: Escolhe EXE
-
-Usuário->>+Steam->>+->>Proton:Inicia o jogo
-
-Usuário->>+Proton Runner->>Proton: Executa programa
+sequenceDiagram
+    participant Usuário
+    participant ProtonRunner
+    participant Steam
+    participant Proton
+    
+    Usuário->>+ProtonRunner: 1. Seleciona jogo
+    Usuário->>+ProtonRunner: 2. Escolhe EXE
+    ProtonRunner->>+Steam: 3. Obtém prefixo do jogo
+    Steam-->>-ProtonRunner: Prefixo path
+    Usuário->>+ProtonRunner: 4. Clica em Executar
+    ProtonRunner->>+Proton: 5. Executa programa no prefixo
+    Proton-->>-ProtonRunner: Status
+    ProtonRunner-->>-Usuário: Confirmação
 
 ```
 
