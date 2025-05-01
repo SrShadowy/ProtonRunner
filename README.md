@@ -116,7 +116,7 @@ sequenceDiagram
 
 1.  Selecione  "Devil May Cry HD Colletion" (AppID 631510)
 
-2.  Aponte  para  "CheatEngine-x86_64.exe"
+2.  Localize o "CheatEngine-x86_64.exe"
 
 3.  Clique  em  "Run"  -  Agora  o  CE  verá  o  processo  do  jogo!
 
