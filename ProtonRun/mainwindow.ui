@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>712</width>
+    <height>602</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Steam Proton Runner</string>
+  </property>
+  <property name="windowIcon">
+   <iconset theme="QIcon::ThemeIcon::InputGaming"/>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow {
+	background-color: rgb(39, 39, 39);
+ }</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="lbl_title">
+      <property name="font">
+       <font>
+        <pointsize>22</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="contextMenuPolicy">
+       <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LayoutDirection::LeftToRight</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>Proton Runner</string>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+      <property name="margin">
+       <number>6</number>
+      </property>
+      <property name="indent">
+       <number>0</number>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="TopBar">
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="lbl_search">
+        <property name="font">
+         <font>
+          <pointsize>-1</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #ffffff; font-size: 14px;</string>
+        </property>
+        <property name="text">
+         <string>Search:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="edt_search">
+        <property name="font">
+         <font/>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #5a5a5a;
+        background: #3a3a3a;
+        color: white;
+    }
+QLineEdit:focus {
+        border: 1px solid #0078d4;
+    }</string>
+        </property>
+        <property name="placeholderText">
+         <string>App name/App Id/ Proton Ver</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QTreeWidget" name="treeWidget">
+      <property name="styleSheet">
+       <string notr="true"> QTreeWidget {
+        background-color: #3c3c3c;
+        color: #ffffff;
+        border: 1px solid #4d4d4d;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+    QHeaderView::section {
+        background-color: #404040;
+        color: #ffffff;
+        padding: 8px;
+        border: none;
+        font-weight: bold;
+    }
+
+QScrollBar:vertical {
+    border: none;
+    background: rgba(30, 30, 30, 150);
+    width: 8px;
+    margin: 2px;
+}
+
+QScrollBar::handle:vertical {
+    background: rgba(100, 100, 100, 150);
+    min-height: 30px;
+    border-radius: 4px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: rgba(120, 120, 120, 180);
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0px;
+}</string>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>false</bool>
+      </property>
+      <property name="columnCount">
+       <number>3</number>
+      </property>
+      <attribute name="headerMinimumSectionSize">
+       <number>30</number>
+      </attribute>
+      <attribute name="headerDefaultSectionSize">
+       <number>250</number>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>Application</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <fontweight>Medium</fontweight>
+        </font>
+       </property>
+       <property name="textAlignment">
+        <set>AlignLeading|AlignVCenter</set>
+       </property>
+       <property name="icon">
+        <iconset theme="QIcon::ThemeIcon::InputGaming"/>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>App ID</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="textAlignment">
+        <set>AlignLeading|AlignVCenter</set>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Proton Version</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="textAlignment">
+        <set>AlignLeading|AlignVCenter</set>
+       </property>
+      </column>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="LowerBar">
+      <item>
+       <widget class="QLabel" name="lbl_custom_exec">
+        <property name="styleSheet">
+         <string notr="true">color: #ffffff; font-size: 14px;</string>
+        </property>
+        <property name="text">
+         <string>Custom Executable:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="line_process">
+        <property name="styleSheet">
+         <string notr="true">background-color: #3c3c3c;
+color: #ffffff;
+border: 1px solid #4d4d4d;
+border-radius: 4px;
+padding: 8px;
+font-size: 14px;</string>
+        </property>
+        <property name="placeholderText">
+         <string>Path to executable...</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_get">
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+          background-color: #0078d4;
+          border: none;
+          border-radius: 5px;
+          min-width: 30px;
+          max-width: 30px;
+          min-height: 30px;
+          max-height: 30px;
+          padding: 3px;
+      }
+      QPushButton:hover {
+          background-color: #006cbd;
+      }
+      QPushButton:pressed {
+          background-color: #005a9e;
+      }</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset theme="QIcon::ThemeIcon::SystemSearch"/>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_run">
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"> QPushButton {
+        background-color: #0078d4;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 10px 20px;
+        font-weight: bold;
+        min-width: 100px;
+    }
+    QPushButton:hover {
+        background-color: #006cbd;
+    }
+    QPushButton:pressed {
+        background-color: #005a9e;
+    }</string>
+        </property>
+        <property name="text">
+         <string>Run</string>
+        </property>
+        <property name="icon">
+         <iconset theme="QIcon::ThemeIcon::MediaPlaybackStart"/>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+        <property name="flat">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>712</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuabout">
+    <property name="title">
+     <string>:D</string>
+    </property>
+    <addaction name="actionGit"/>
+    <addaction name="separator"/>
+    <addaction name="actionAbout"/>
+    <addaction name="separator"/>
+    <addaction name="actionConfig_Path"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <addaction name="menuabout"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionGit">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::DocumentSend"/>
+   </property>
+   <property name="text">
+    <string>Git</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionConfig_Path">
+   <property name="text">
+    <string>Config Path</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::QuitRole</enum>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
