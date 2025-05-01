@@ -108,7 +108,8 @@ sequenceDiagram
 
 ## 🧩 Casos de Uso
 
-  
+  (DMC4&CheatEngine)[DEMO/DMC4_AND_CHEAT_ENGINE.jpg]
+  (RE6&FlingTrainer)[DEMO/R6_And_fling_Trainer.png]
 
 ### 1. Usando Cheat Engine
 
