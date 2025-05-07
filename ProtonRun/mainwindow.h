@@ -50,17 +50,14 @@ private slots:
 
     void on_actionAbout_triggered();
 
+    void on_actionTESTING_triggered();
+
 private:
     Ui::MainWindow *ui;
     QString steamPath;
     QMap<QString, QString> protonGames;
 };
 
-struct Proton
-{
-    QMap<QString, QString> path;
-    QString appID;
-    const QString proton = "proton";
-};
+
 
 #endif // MAINWINDOW_H

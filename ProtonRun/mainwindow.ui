@@ -27,8 +27,10 @@
      <widget class="QLabel" name="lbl_title">
       <property name="font">
        <font>
-        <pointsize>22</pointsize>
-        <bold>true</bold>
+        <family>Noto Sans Ethiopic ExtraBold</family>
+        <pointsize>24</pointsize>
+        <italic>false</italic>
+        <fontweight>ExtraBold</fontweight>
        </font>
       </property>
       <property name="contextMenuPolicy">
@@ -38,7 +40,11 @@
        <enum>Qt::LayoutDirection::LeftToRight</enum>
       </property>
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">QLabel{
+
+color: rgb(255, 255, 255);
+font: 800 24pt &quot;Noto Sans Ethiopic ExtraBold&quot;;
+}</string>
       </property>
       <property name="text">
        <string>Proton Runner</string>
@@ -325,6 +331,10 @@ font-size: 14px;</string>
      <height>22</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(213, 213, 213);
+background-color: rgb(15, 16, 16);</string>
+   </property>
    <widget class="QMenu" name="menuabout">
     <property name="title">
      <string>:D</string>
@@ -335,6 +345,8 @@ font-size: 14px;</string>
     <addaction name="separator"/>
     <addaction name="actionConfig_Path"/>
     <addaction name="actionExit"/>
+    <addaction name="separator"/>
+    <addaction name="actionTESTING"/>
    </widget>
    <addaction name="menuabout"/>
   </widget>
@@ -348,21 +360,41 @@ font-size: 14px;</string>
    </property>
   </action>
   <action name="actionAbout">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::ContactNew"/>
+   </property>
    <property name="text">
     <string>About</string>
    </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::AboutRole</enum>
+   </property>
   </action>
   <action name="actionConfig_Path">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::DocumentProperties"/>
+   </property>
    <property name="text">
     <string>Config Path</string>
    </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::PreferencesRole</enum>
+   </property>
   </action>
   <action name="actionExit">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::ProcessStop"/>
+   </property>
    <property name="text">
     <string>Exit</string>
    </property>
    <property name="menuRole">
     <enum>QAction::MenuRole::QuitRole</enum>
+   </property>
+  </action>
+  <action name="actionTESTING">
+   <property name="text">
+    <string>TESTING</string>
    </property>
   </action>
  </widget>

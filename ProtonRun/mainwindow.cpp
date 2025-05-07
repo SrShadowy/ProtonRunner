@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "customproton.h"
 #include "ui_mainwindow.h"
 #include <QProcess>
 #include "configpath.h"
@@ -7,6 +8,7 @@
 #include <QUrl>
 
 Proton protonpath;
+
 
 void MainWindow::scanSteam(){
 
@@ -184,7 +186,10 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ConfigPath::get()->SyncUi(ui);
     steamPath = ConfigPath::get()->GetSteamPath();
+    ConfigPath::get()->LoadSettings();
+
     scanSteam();
 }
 
@@ -233,8 +238,10 @@ void MainWindow::on_btn_get_clicked()
     if (!fileName.isEmpty()) {
         fileName = QDir::toNativeSeparators(fileName.trimmed());
 
+
         if (QFile::exists(fileName)) {
             ui->line_process->setText(fileName);
+
 
             // Feedback visual
             QPalette palette = ui->line_process->palette();
@@ -246,6 +253,7 @@ void MainWindow::on_btn_get_clicked()
                                  tr("The selected file does not exist."));
         }
     }
+    ConfigPath::get()->SaveSettings();
 }
 
 
@@ -302,8 +310,10 @@ void MainWindow::on_actionExit_triggered()
 
 void MainWindow::on_actionConfig_Path_triggered()
 {
-    const QUrl githubUrl("https://github.com/SrShadowy/ProtonRunner/issues");
-    QDesktopServices::openUrl(githubUrl);
+    customproton* newWindow = new customproton(this);
+    newWindow->setAttribute(Qt::WA_DeleteOnClose);
+    newWindow->show();
+
 }
 
 
@@ -353,5 +363,12 @@ void MainWindow::on_actionAbout_triggered()
     aboutBox.setIcon(QMessageBox::Information);
 
     aboutBox.exec();
+}
+
+
+void MainWindow::on_actionTESTING_triggered()
+{
+    const QUrl githubUrl("https://github.com/SrShadowy/ProtonRunner/issues");
+    QDesktopServices::openUrl(githubUrl);
 }
 

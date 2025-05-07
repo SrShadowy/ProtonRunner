@@ -12,6 +12,9 @@ qt_add_executable(ProtonRun
     mainwindow.h
     mainwindow.ui
     configpath.h configpath.cpp
+
+    customproton.h customproton.cpp customproton.ui
+
 )
 
 target_link_libraries(ProtonRun
