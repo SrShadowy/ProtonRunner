@@ -64,19 +64,26 @@ void MainWindow::parseConfigVDF() {
         auto match = i.next();
         QString appid = match.captured(1);
         QString proton = match.captured(2);
-        protonGames[appid] = proton;
+
+        if (!protonGames.contains(appid)) {
+            protonGames[appid] = proton;
+        }
+
+        //qDebug() << "Parsed AppID:" << appid << "Proton Version:" << proton;
+
     }
 }
 
 QString MainWindow::getProtonVersion(const QString appid)
 {
     QString configInfoPath = steamPath + "/steamapps/compatdata/" + appid + "/config_info";
-    QString protonVer = "None / Native";
+    QString protonVer = "None / Native / Default";
     QFile configInfo(configInfoPath);
     if (configInfo.exists() && configInfo.open(QIODevice::ReadOnly)) {
         QTextStream inInfo(&configInfo);
         protonVer = inInfo.readLine().trimmed();
     }
+
     return protonVer;
 }
 
@@ -150,6 +157,15 @@ void MainWindow::executeOnProton(const QString &appid, const QString exec)
 
 }
 
+bool alreadyExists(QTreeWidget* tree, const QString& appid) {
+    for (int i = 0; i < tree->topLevelItemCount(); ++i) {
+        QTreeWidgetItem* item = tree->topLevelItem(i);
+        if (item->text(1) == appid) return true;
+    }
+    return false;
+}
+
+
 void MainWindow::parseAppManifest(const QString &path) {
     QFile file(path);
     if (!file.open(QIODevice::ReadOnly))
@@ -165,17 +181,27 @@ void MainWindow::parseAppManifest(const QString &path) {
             name = line.section("\"", 3, 3);
     }
 
-    if (name.contains("Proton", Qt::CaseInsensitive) || name.contains("Steam Linux Runtime", Qt::CaseInsensitive) || name.contains("Steamworks", Qt::CaseInsensitive))
+    if (name.contains("Proton", Qt::CaseInsensitive) ||
+        name.contains("Steam Linux Runtime", Qt::CaseInsensitive) ||
+        name.contains("Steamworks", Qt::CaseInsensitive))
         return;
 
     QString protonVer = getProtonVersion(appid);
+    protonpath.path[appid] = GetProtonPath(steamPath + "/steamapps/compatdata/" + appid + "/config_info");
 
-    protonpath.path[appid] = (GetProtonPath(steamPath + "/steamapps/compatdata/" + appid + "/config_info"));
+    if(alreadyExists(ui->treeWidget, appid))
+    {
+        qDebug() << "[!] Ignored -> Name:" << name << "Parsed AppID:" << appid << "Proton Version:" << protonVer;
+        return;
+    }
 
     QTreeWidgetItem *item = new QTreeWidgetItem(ui->treeWidget);
     item->setText(0, name);
     item->setText(1, appid);
     item->setText(2, protonVer);
+
+    //qDebug() << "on Path " << path;
+    //qDebug() << "Name:" << name << "Parsed AppID:" << appid << "Proton Version:" << protonVer;
 }
 
 
